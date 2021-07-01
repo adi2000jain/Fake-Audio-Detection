@@ -20,6 +20,7 @@ Chapter 2. Background Overview
 2.1  Conceptual Overview (Concepts/ Theory used)
 
 CNN is one of the most common types of neural networks used to recognize and classify pictures. CNNs are commonly utilized in domains such as object detection, face recognition, and so on. CNN image classifications takes an input image, processes it, and categorizes it into several groups. An input image is seen by computers as an array of pixels, with the number of pixels varying depending on the image resolution. The code for the Convolution neural network is written in Python [1] using Keras [2] Package.
+
 <img width="160" alt="image" src="https://user-images.githubusercontent.com/43815354/124078663-c82ee280-da65-11eb-960c-1280b9cffd02.png">
 
 Figure 1 Working of Kernel in a Convolution Layer
@@ -28,6 +29,8 @@ From the time domain, audio splits are translated to the frequency domain. The a
 C(x(t)) = F -1[log(F(x(t))]
 x(t): Time domain Signal
 F -1[log(F(x(t))]: Cepstrum i.e., the result of computing the inverse Fourier transform (IFT) of the logarithm of the estimated signal spectrum.
+
+
 <img width="290" alt="image" src="https://user-images.githubusercontent.com/43815354/124078692-d1b84a80-da65-11eb-8327-aa47bb121391.png">
 
 Figure 2 Working of MFCC
@@ -58,6 +61,7 @@ Since the samples in consideration are from live events and speeches there was a
 The data set consists of various public figures speeches from different timelines along with mimicries done by voice artists that were posted on various social media platforms.
 The dataset is then divided into categories mainly training (70-80%) and testing Dataset(20-30%).As the name suggests, the former dataset is used to train the model while the latter is used for model testing. The audio is cut into frames of fixed size. The next frame usually overlaps the previous frame to capture maximum information. The process is repeated until the end of the file and in case of presence of a shorter frame, zero paddings are added to it. These audio splits are converted to frequency domain from the time domain. The spectrum obtained is called the amplitude spectrum. 
 Maximum pooling, or max pooling, is a pooling operation that calculates the maximum, or largest, value in each patch of each feature map. This helps in down sampling of images and retaining the most important information.[5][6] 
+
 <img width="277" alt="image" src="https://user-images.githubusercontent.com/43815354/124078768-e7c60b00-da65-11eb-8d87-75e5e03d450b.png">
 
 Figure 3 Working of Max Pooling
@@ -70,8 +74,13 @@ Here 𝑑𝑡is a delta coefficient, from frame t computed in terms of the stati
 CNN is one of the most common types of neural networks used to recognize and classify pictures. CNNs are commonly utilized in domains such as object detection, face recognition, and so on. CNN image classifications takes an input image, processes it, and categorizes it into several groups. An input image is seen by computers as an array of pixels, with the number of pixels varying depending on the image resolution. The code for the Convolution neural network is written in Python [1] using Keras [2] Package. As we add more convolutional layers, the accuracy tends to saturate and then degrades quickly. Features learned from one of the previous layers are stacked with a new layer. So as the layers increase, almost certainly new features can be learned due to residual features which are extending from layers before.
 
 3.2  Architecture of CNN
+
+<img width="290" alt="image" src="https://user-images.githubusercontent.com/43815354/124079571-f103a780-da66-11eb-9d99-37717c048933.png">
+
 <img width="113" alt="image" src="https://user-images.githubusercontent.com/43815354/124078826-fa404480-da65-11eb-8a19-fc70d68214aa.png">
+
 Figure 4 Architecture of CNN
+
 3.3  Properties of Convolution Layer 
 
 As observed after every few stacked layers input of the primary layer gets added to the last layer. This enables features to be learned efficiently by deeper layers. A variety of operations can be performed on the two layers like addition, average, concatenation etc. Taking inspiration from this architecture, I used a block structure as shown in Figure 4. Additional details of the convolution layers are given in Table 1. 
@@ -103,6 +112,7 @@ Chapter 4. Implementation and Result
 4.1  Result
 
 Using the proposed complete Architecture as given in Table 1 and Table 2, the Accuracy achieved was 97.69%. The dataset in consideration is an amalgam of various PM Narendra Modi speeches and that of various people []. Precision i.e. Accuracy of positive predictions was observed to be 0.97 while the percent of positive predictions were correct i.e. F1- Score was observed to be 0.98.
+ 
 <img width="260" alt="image" src="https://user-images.githubusercontent.com/43815354/124079081-51461980-da66-11eb-8d3a-fe622ed94b40.png">
 
 Figure 5 shows the performance of a classification model at all classification thresholds using ROC Curve.
