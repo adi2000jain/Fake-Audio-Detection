@@ -19,10 +19,108 @@ Chapter 2. Background Overview
 
 2.1  Conceptual Overview (Concepts/ Theory used)
 
-CNN is one of the most common types of neural networks used to recognize and classify pictures. CNNs are commonly utilized in domains such as object detection, face recognition, and so on. CNN image classifications takes an input image, processes it, and categorizes it into several groups. An input image is seen by computers as an array of pixels, with the number of pixels varying depending on the image resolution.
+CNN is one of the most common types of neural networks used to recognize and classify pictures. CNNs are commonly utilized in domains such as object detection, face recognition, and so on. CNN image classifications takes an input image, processes it, and categorizes it into several groups. An input image is seen by computers as an array of pixels, with the number of pixels varying depending on the image resolution. The code for the Convolution neural network is written in Python [1] using Keras [2] Package.
+<img width="160" alt="image" src="https://user-images.githubusercontent.com/43815354/124078663-c82ee280-da65-11eb-960c-1280b9cffd02.png">
 
-From the time domain, audio splits are translated to the frequency domain. The amplitude spectrum is the result of this process. The MFCC feature is one of the most essential methods for extracting a feature from an audio signal, and it is frequently utilized when working with audio signals. A signal's mel frequency cepstral coefficients (MFCCs) are a short group of characteristics (often 10–20) that succinctly define the overall shape of a spectral envelope.
+Figure 1 Working of Kernel in a Convolution Layer
+From the time domain, audio splits are translated to the frequency domain. The amplitude spectrum is the result of this process. The MFCC feature is one of the most essential methods for extracting a feature from an audio signal, and it is frequently utilized when working with audio signals. A signal's Mel frequency cepstral coefficients (MFCCs) are a short group of characteristics (often 10–20) that succinctly define the overall shape of a spectral envelope.
 
-                                                            C(x(t)) = F -1[log(F(x(t))]
+C(x(t)) = F -1[log(F(x(t))]
 x(t): Time domain Signal
-F -1[log(F(x(t))]: Cepstrum i.e. the result of computing the inverse Fourier transform (IFT) of the logarithm of the estimated signal spectrum.
+F -1[log(F(x(t))]: Cepstrum i.e., the result of computing the inverse Fourier transform (IFT) of the logarithm of the estimated signal spectrum.
+<img width="290" alt="image" src="https://user-images.githubusercontent.com/43815354/124078692-d1b84a80-da65-11eb-8327-aa47bb121391.png">
+
+Figure 2 Working of MFCC
+
+An ROC curve (receiver operating characteristic curve) is a graph showing the performance of a classification model at all classification thresholds. 
+This curve plots two parameters:
+•	True Positive Rate
+•	False Positive Rate
+True Positive Rate (TPR) is a synonym for recall and is therefore defined as follows:
+TPR=TP/(TP+FN)
+False Positive Rate (FPR) is defined as follows:
+FPR=NP/(NP+TN)
+
+2.2  Technologies Involved
+
+Google Colab : Colaboratory, or “Colab” for short, is a product from Google Research. Colab allows anybody to write and execute arbitrary python code through the browser, and is especially well suited to machine learning, data analysis and education. Google Colab [3] is used as an environment due to the free availability of GPU to accelerate model performance.
+
+Librosa : Librosa is a robust Python package for working with and analyzing audio. It's the first step toward dealing with audio data at scale for a variety of applications, from identifying a person's voice to extracting personal features from audio.[7]
+
+TensorFlow : TensorFlow is an open-source library for fast numerical computing. It was created and is maintained by Google and released under the Apache 2.0 open-source license. The API is nominally for the Python programming language, although there is access to the underlying C++ API.
+
+Chapter 3. Methodology
+
+ 3.1  Detailed Methodology Adopted
+
+The main ambition of the project is to segregate and identify various sound modules using techniques of machine learning in python. First, We proceeded with collection and preprocessing of a dataset that has some data that can be used for both visual and theoretical presentation.
+Since the samples in consideration are from live events and speeches there was a lot of noise and other issues with samples. Thus, data set is preprocessed using a software called Goldwave which helped us reduce the noise in the samples, treating mic bleeding and various other issues.
+The data set consists of various public figures speeches from different timelines along with mimicries done by voice artists that were posted on various social media platforms.
+The dataset is then divided into categories mainly training (70-80%) and testing Dataset(20-30%).As the name suggests, the former dataset is used to train the model while the latter is used for model testing. The audio is cut into frames of fixed size. The next frame usually overlaps the previous frame to capture maximum information. The process is repeated until the end of the file and in case of presence of a shorter frame, zero paddings are added to it. These audio splits are converted to frequency domain from the time domain. The spectrum obtained is called the amplitude spectrum. 
+Maximum pooling, or max pooling, is a pooling operation that calculates the maximum, or largest, value in each patch of each feature map. This helps in down sampling of images and retaining the most important information.[5][6] 
+<img width="277" alt="image" src="https://user-images.githubusercontent.com/43815354/124078768-e7c60b00-da65-11eb-8d87-75e5e03d450b.png">
+
+Figure 3 Working of Max Pooling
+The MFCC feature is one of the most essential methods for extracting a feature from an audio signal, and it is frequently utilized when working with audio signals. A signal's Mel frequency cepstral coefficients (MFCCs) are a short group of characteristics (often 10–20) that succinctly define the overall shape of a spectral envelope.
+
+C(x(t)) = F -1[log(F(x(t))]
+MFCC defines the power spectral of one frame only but over time these spectral coefficient change and hence it was observed that appending these trajectories of features to the power spectral significantly improved the performance of ASR. These are known as delta coefficients. 
+𝑑t=𝛴Nn=1( c t+n - c t-n) / 2𝛴Nn=1 n2
+Here 𝑑𝑡is a delta coefficient, from frame t computed in terms of the static coefficients 𝑐𝑡+𝑛 to 𝑐𝑡−𝑛. A typical value for N is 2 (derivative order).
+CNN is one of the most common types of neural networks used to recognize and classify pictures. CNNs are commonly utilized in domains such as object detection, face recognition, and so on. CNN image classifications takes an input image, processes it, and categorizes it into several groups. An input image is seen by computers as an array of pixels, with the number of pixels varying depending on the image resolution. The code for the Convolution neural network is written in Python [1] using Keras [2] Package. As we add more convolutional layers, the accuracy tends to saturate and then degrades quickly. Features learned from one of the previous layers are stacked with a new layer. So as the layers increase, almost certainly new features can be learned due to residual features which are extending from layers before.
+
+3.2  Architecture of CNN
+<img width="113" alt="image" src="https://user-images.githubusercontent.com/43815354/124078826-fa404480-da65-11eb-8a19-fc70d68214aa.png">
+Figure 4 Architecture of CNN
+3.3  Properties of Convolution Layer 
+
+As observed after every few stacked layers input of the primary layer gets added to the last layer. This enables features to be learned efficiently by deeper layers. A variety of operations can be performed on the two layers like addition, average, concatenation etc. Taking inspiration from this architecture, I used a block structure as shown in Figure 4. Additional details of the convolution layers are given in Table 1. 
+
+Table 1. Properties of each convolution layer in the proposed architecture
+
+Layer Number	Properties Kernel Size	Filter	Activation
+Conv_2D_1     	       (3,5)	          16	    Tanh
+Conv_2D_2	     	       (3,5)	          32	    Tanh
+Max Pool	       Pool size = (2, 5)		
+Conv_2D_3     	       (5,5)	          64	     Tanh
+Conv_2D_4	     	       (5,5)	         126	     Tanh
+Max Pool	      Pool size = (2, 5)		
+
+To standardize our results, we used the following architecture (Table 2) to use each of the models.
+Table 2. Complete Architecture of Network Used 
+
+Layer Number	    Name	                                  Specifications
+    1	        Input Layer	              Resize according to requirements of architecture
+    2	  Existing Convolutional Layers                           -
+            (from Table 1)	              
+    3	        Flatten	                                          -
+    4	        Dense	                            Activation = Tanh Shape = 128
+    5		      Dense	                            Activation = Tanh Shape = 32
+    6		      Dense	                            Activation = Sigmoid Shape = 1
+
+Chapter 4. Implementation and Result
+
+4.1  Result
+
+Using the proposed complete Architecture as given in Table 1 and Table 2, the Accuracy achieved was 97.69%. The dataset in consideration is an amalgam of various PM Narendra Modi speeches and that of various people []. Precision i.e. Accuracy of positive predictions was observed to be 0.97 while the percent of positive predictions were correct i.e. F1- Score was observed to be 0.98.
+<img width="260" alt="image" src="https://user-images.githubusercontent.com/43815354/124079081-51461980-da66-11eb-8d3a-fe622ed94b40.png">
+
+Figure 5 shows the performance of a classification model at all classification thresholds using ROC Curve.
+
+Chapter 5. Future Work and Conclusion
+
+The proposed architecture works efficiently on the applied dataset. The audios are converted to MFCCs along with its derivative to attain a two-dimensional input for the model. Using this architecture, the model learns quickly, achieving comparable accuracy on the datasets. The model achieves 97.69 % accuracy which shows the potential of the architecture to perform better with further works. However, testing with more data is required. A diversified testing data shall be created in future work to check it with real case scenarios and more noise. Furthermore more datasets of other Public Figures shall be tested to generalise the architecture. This also open the future capability of the network to be used for tasks like speaker identification and verification, and study of other similar wave forms. 
+
+REFERENCES
+
+
+[1] Chollet, F., &others.(2015). Keras. GitHub. Retrieved from https://github.com/fchollet/keras
+[2] "G. van Rossum, Python tutorial, Technical Report CS-R9526, Centrumvoor Wiskundeen Informatica (CWI), Amsterdam, May 1995."
+[3] Bisong E.(2019) Google Colaboratory .In: Building Machine Learning and Deep Learning Models on Google Cloud Platform. A press, Berkeley, CA. https://doi.org/10.1007/978-1-4842-4470-8_7
+[4] Christopher T. (2019), “An introduction to Convolutional Neural Networks”,
+https://towardsdatascience.com/an-introduction-to-convolutional-neural-networks-eb0b60b58fd7 (Mar. 1 2021).
+[5] ComputerScienceWiki,(2018),“Max-pooling/Pooling”, https://computersciencewiki.org/index.php/Max-pooling_/_Pooling, (Mar. 1 2021).
+[6] MahajanP.(2020),“MaxPooling”,https://poojamahajan5131.medium.com/max-pooling-210fc94c4f11, (Mar. 1 2021).
+[7] McFee, Brian, Colin Raffel, Dawen Liang, Daniel PW Ellis, Matt McVicar, Eric Battenberg,
+and Oriol Nieto. “librosa: Audio and music signal analysis in python.” In Proceedings of the
+14th python in science conference, pp. 18-25. 2015
